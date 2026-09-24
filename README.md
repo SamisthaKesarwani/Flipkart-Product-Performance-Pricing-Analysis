@@ -2,7 +2,8 @@
 
 > **AICTE IBM SkillsBuild Internship Project**  
 > Identify top-performing and underperforming products, uncover pricing patterns, determine drivers of high ratings, and generate actionable sales recommendations — all from real customer review data.
-
+> Made with IBM BOB
+ 
 ---
 
 ## 📋 Table of Contents
@@ -60,10 +61,10 @@ This project performs an end-to-end product performance analysis on Flipkart cus
 
 ```
 .
-├── Samistha_flipkartproductperformance&pricinganalysis.py   # Main Streamlit app
+├── Samistha_flipkartproductperformance_pricinganalysis.py   # Main Streamlit app
 ├── Dataset-SA.csv                                           # Dataset
 ├── requirements.txt                                         # Pinned dependencies
-├── project_report.docx                                      # Full project report (Word)
+├── Samistha_ProjectReport.docx                                      # Full project report (Word)
 ├── README.md                                                # This file
 └── charts/                                                  # Auto-generated chart PNGs
     ├── aggregated_data_sample.png
@@ -106,7 +107,7 @@ pip install -r requirements.txt
 ### Option A — Streamlit Web App (recommended)
 
 ```bash
-streamlit run "Samistha_flipkartproductperformance&pricinganalysis.py"
+streamlit run "Samistha_flipkartproductperformance_pricinganalysis.py"
 ```
 
 Opens at **http://localhost:8501** in your browser.
@@ -117,7 +118,7 @@ Opens at **http://localhost:8501** in your browser.
 ### Option B — Save all charts to disk (no browser needed)
 
 ```bash
-python "Samistha_flipkartproductperformance&pricinganalysis.py" --save-charts
+python "Samistha_flipkartproductperformance_pricinganalysis.py" --save-charts
 ```
 
 This runs the full pipeline headlessly and saves all 13 chart PNGs into the `charts/` folder.
@@ -200,7 +201,7 @@ This runs the full pipeline headlessly and saves all 13 chart PNGs into the `cha
 
 ## Report
 
-The full project write-up is in **`project_report.docx`**, covering:
+The full project write-up is in **`Samistha_ProjectReport.docx`**, covering:
 - Business problem & objectives
 - Dataset description
 - Methodology (5-stage pipeline)
