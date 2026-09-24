@@ -1,214 +1,387 @@
 # 🛒 Flipkart Product Performance & Pricing Analysis
 
-> **AICTE IBM SkillsBuild Internship Project**  
-> Identify top-performing and underperforming products, uncover pricing patterns, determine drivers of high ratings, and generate actionable sales recommendations — all from real customer review data.
-> Made with IBM BOB
- 
----
-
-## 📋 Table of Contents
-
-- [Project Overview](#project-overview)
-- [Dataset](#dataset)
-- [Project Structure](#project-structure)
-- [Setup & Installation](#setup--installation)
-- [How to Run](#how-to-run)
-- [Analysis Sections](#analysis-sections)
-- [Key Findings](#key-findings)
-- [Charts Generated](#charts-generated)
-- [Tech Stack](#tech-stack)
-- [Screenshots](#screenshots)
+> **AICTE IBM SkillsBuild Internship Project**
+> An end-to-end data analytics and machine learning project for analyzing Flipkart product reviews, pricing patterns, customer sentiment, product performance, and factors associated with product ratings.
 
 ---
 
-## Project Overview
+## 📌 Project Overview
 
-This project performs an end-to-end product performance analysis on Flipkart customer reviews. It answers four core business questions:
+This project analyzes Flipkart product review data using **Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, and Streamlit**.
 
-| Question | Method |
-|---|---|
-| Which products are top performers vs underperformers? | Composite score = z(rating) + z(sentiment%) + z(log(reviews)) |
-| What pricing patterns exist across categories? | Price tiers (Budget / Mid / Premium) via tertile quantiles |
-| What characteristics drive high ratings? | Gradient Boosting Regressor — feature importance |
-| Why do products underperform? | TF-IDF on negative reviews → complaint keyword extraction |
+The project combines:
 
----
+* Data cleaning and preprocessing
+* Exploratory data analysis
+* Product performance analysis
+* Pricing analysis
+* Customer sentiment analysis
+* Machine learning
+* TF-IDF based text analysis
+* Interactive Streamlit visualization
+* Business-oriented recommendations
 
-## Dataset
+### 🎯 Key Business Questions
 
-| Property | Value |
-|---|---|
-| File | `Dataset-SA.csv` |
-| Source | [Kaggle — Flipkart Product Customer Reviews](https://www.kaggle.com/datasets/niraliivaghani/flipkart-product-customer-reviews-dataset) by niraliivaghani |
-| Rows | ~170,000 (after cleaning) |
-| Product types | 104 |
-| Sentiment | Pre-labelled as Positive / Neutral / Negative |
-
-**Columns:**
-
-| Column | Description |
-|---|---|
-| `product_name` | Full product name as listed on Flipkart |
-| `price` | Listed price in ₹ (may contain currency symbols) |
-| `rate` | Customer star rating (1–5) |
-| `review` | Full review text (may be null if summary exists) |
-| `summary` | Short review headline (may be null if review exists) |
-| `sentiment` | Pre-labelled sentiment: Positive / Neutral / Negative |
+| Business Question                                    | Approach                                   |
+| ---------------------------------------------------- | ------------------------------------------ |
+| Which products perform well and which underperform?  | Composite product-performance score        |
+| How does pricing vary across product categories?     | Price distribution and price-tier analysis |
+| Which variables are associated with product ratings? | Correlation analysis and Gradient Boosting |
+| What are the major customer complaints?              | TF-IDF analysis of negative reviews        |
+| How can the findings support business decisions?     | Data-driven recommendations                |
 
 ---
 
-## Project Structure
+## 🔍 Analysis Pipeline
 
-```
-.
-├── Samistha_flipkartproductperformance_pricinganalysis.py   # Main Streamlit app
-├── Dataset-SA.csv                                           # Dataset
-├── requirements.txt                                         # Pinned dependencies
-├── Samistha_ProjectReport.docx                                      # Full project report (Word)
-├── README.md                                                # This file
-└── charts/                                                  # Auto-generated chart PNGs
-    ├── aggregated_data_sample.png
-    ├── category_distribution.png
-    ├── top10_products_chart.png
-    ├── bottom10_products_chart.png
-    ├── price_vs_rating_scatter.png
-    ├── price_by_category_boxplot.png
-    ├── price_tier_rating_chart.png
-    ├── price_tier_sentiment_chart.png
-    ├── correlation_heatmap.png
-    ├── feature_importance_chart.png
-    ├── negative_keywords_bar.png
-    ├── negative_keywords_wordcloud.png
-    └── notebook_widget_demo.png
+The project follows an end-to-end analytics workflow:
+
+```text
+Raw Review Data
+      ↓
+Data Cleaning & Preprocessing
+      ↓
+Category Extraction
+      ↓
+Product-Level Aggregation
+      ↓
+Exploratory Data Analysis
+      ↓
+Pricing & Sentiment Analysis
+      ↓
+Machine Learning
+      ↓
+Negative Review / TF-IDF Analysis
+      ↓
+Business Insights & Recommendations
+      ↓
+Interactive Streamlit Dashboard
 ```
 
 ---
 
-## Setup & Installation
+## 📊 Dataset
 
-**Prerequisites:** Python 3.11+
+The analysis uses a **Flipkart customer review dataset obtained from Kaggle**.
+
+The dataset is **not included in this repository**.
+
+This was intentionally excluded to keep the repository lightweight and to avoid redistributing the raw dataset.
+
+### Dataset contains information such as:
+
+* Product name
+* Product price
+* Customer rating
+* Review text
+* Review summary
+* Customer sentiment
+
+### Dataset Source
+
+The dataset used for this project is available through Kaggle:
+
+**Flipkart Product Customer Reviews dataset** by `niraliivaghani`.
+
+> To run the complete analysis locally, download the dataset separately and place the CSV file in the project directory using the filename expected by the Python application.
+
+---
+
+## 📁 Project Structure
+
+```text
+Flipkart-Product-Performance-Pricing-Analysis/
+│
+├── README.md
+├── requirements.txt
+├── Samistha_flipkartproductperformance_pricinganalysis.py
+└── Samistha_ProjectReport.docx
+```
+
+### File Description
+
+| File                                                     | Description                                                                             |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Samistha_flipkartproductperformance_pricinganalysis.py` | Main Python analysis pipeline and Streamlit application                                 |
+| `requirements.txt`                                       | Python dependencies required to run the project                                         |
+| `Samistha_ProjectReport.docx`                            | Detailed project report containing methodology, analysis, findings, and recommendations |
+| `README.md`                                              | Project documentation                                                                   |
+
+> **Note:** The dataset and generated chart images are intentionally not included in the repository.
+
+---
+
+## ⚙️ Technologies Used
+
+| Technology       | Purpose                                               |
+| ---------------- | ----------------------------------------------------- |
+| **Python**       | Core programming language                             |
+| **Pandas**       | Data manipulation and analysis                        |
+| **NumPy**        | Numerical computation                                 |
+| **Matplotlib**   | Data visualization                                    |
+| **Seaborn**      | Statistical visualization                             |
+| **Scikit-learn** | Machine learning and text analysis                    |
+| **Streamlit**    | Interactive web dashboard                             |
+| **WordCloud**    | Visualization of frequently occurring complaint terms |
+
+---
+
+## 🧹 Data Preprocessing
+
+The preprocessing stage includes:
+
+* Standardizing column names
+* Cleaning product prices
+* Handling missing values
+* Removing duplicate records
+* Normalizing sentiment labels
+* Converting ratings into numerical values
+* Preparing review text for analysis
+* Extracting product categories from product names
+
+Product categories are inferred using a **rule-based keyword mapping** from product names.
+
+---
+
+## 📈 Product Performance Analysis
+
+Products are aggregated using metrics such as:
+
+* Average rating
+* Number of reviews
+* Average price
+* Positive sentiment percentage
+* Negative sentiment percentage
+
+A composite performance score is then used to identify relatively higher- and lower-performing products.
+
+The analysis helps identify patterns in:
+
+* Customer satisfaction
+* Review engagement
+* Product performance
+* Category-level performance
+
+---
+
+## 💰 Pricing Analysis
+
+The project examines relationships between product pricing and customer feedback.
+
+Products are grouped into price tiers based on their distribution:
+
+* **Budget**
+* **Mid-range**
+* **Premium**
+
+The analysis compares these groups using:
+
+* Average rating
+* Sentiment distribution
+* Price ranges
+* Category-level pricing patterns
+
+---
+
+## 🤖 Machine Learning Analysis
+
+A **Gradient Boosting Regressor** is used to examine which available product-level variables are most strongly associated with average product ratings.
+
+The analysis includes:
+
+* Train/test split
+* Feature preparation
+* Model training
+* Prediction
+* MAE evaluation
+* R² evaluation
+* Feature importance analysis
+
+### Important Interpretation
+
+Feature importance indicates **association/predictive usefulness**, not causation.
+
+For example, sentiment-related variables may have a strong relationship with ratings because both are derived from customer feedback. Therefore, the model results should be interpreted as predictive associations rather than proof that a particular variable directly causes higher ratings.
+
+---
+
+## 📝 Customer Complaint Analysis
+
+Negative customer reviews are analyzed using **TF-IDF (Term Frequency–Inverse Document Frequency)**.
+
+This helps identify frequently occurring terms and phrases associated with negative customer experiences.
+
+The analysis can highlight potential complaint areas such as:
+
+* Product quality
+* Packaging
+* Product description mismatch
+* Size-related issues
+* Delivery/refund-related concerns
+
+These findings are used to generate business-oriented recommendations.
+
+---
+
+## 💡 Business Recommendations
+
+The project translates analytical findings into practical recommendations related to:
+
+* Product quality
+* Pricing strategy
+* Customer satisfaction
+* Product descriptions
+* Packaging
+* Negative-review patterns
+* Category-level performance
+
+The recommendations are based on patterns observed in the analyzed dataset and should be interpreted within the limitations of the available data.
+
+---
+
+## 🖥️ Streamlit Dashboard
+
+The project includes an interactive Streamlit application that allows users to explore the analysis.
+
+The dashboard provides functionality such as:
+
+* Product performance exploration
+* Category filtering
+* Minimum review filtering
+* Top/bottom product analysis
+* Pricing analysis
+* Rating and sentiment analysis
+* Machine learning insights
+* Negative-review analysis
+
+---
+
+## 🚀 Installation
+
+### 1. Clone the repository
 
 ```bash
-# 1. Clone or download this project folder
+git clone https://github.com/SamisthaKesarwani/Flipkart-Product-Performance-Pricing-Analysis.git
+cd Flipkart-Product-Performance-Pricing-Analysis
+```
 
-# 2. (Recommended) Create a virtual environment
+### 2. Create a virtual environment
+
+#### Windows
+
+```bash
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS / Linux
+venv\Scripts\activate
+```
 
-# 3. Install dependencies
+#### macOS / Linux
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
+### 4. Add the dataset
+
+Download the dataset separately and place the CSV file in the project directory using the filename expected by the application.
+
 ---
 
-## How to Run
+## ▶️ Running the Application
 
-### Option A — Streamlit Web App (recommended)
+Launch the Streamlit dashboard with:
 
 ```bash
-streamlit run "Samistha_flipkartproductperformance_pricinganalysis.py"
+streamlit run Samistha_flipkartproductperformance_pricinganalysis.py
 ```
 
-Opens at **http://localhost:8501** in your browser.
+The application will open in your browser.
 
-- Use the **sidebar file uploader** to upload any Flipkart-style CSV, or leave it empty to use `Dataset-SA.csv` automatically.
-- Use the **Category dropdown**, **Min Reviews slider**, and **Top/Bottom toggle** in the sidebar to explore products interactively.
-
-### Option B — Save all charts to disk (no browser needed)
-
-```bash
-python "Samistha_flipkartproductperformance_pricinganalysis.py" --save-charts
-```
-
-This runs the full pipeline headlessly and saves all 13 chart PNGs into the `charts/` folder.
+You can then explore the analysis interactively using the dashboard controls.
 
 ---
 
-## Analysis Sections
+## 📋 Analysis Sections
 
-| Section | What it covers |
-|---|---|
-| **1 — Setup & Data Loading** | Load CSV, print column names, display shape and head |
-| **2 — Data Cleaning** | Standardise columns, clean price, handle nulls, deduplicate, normalise sentiment |
-| **3 — Category Extraction** | Assign 13 categories from product name via keyword dictionary |
-| **4 — Product Aggregation** | Group by product: avg rating, review count, avg price, sentiment % |
-| **5 — Top vs Underperforming** | Composite-score ranking, top-10 and bottom-10 tables and charts |
-| **6 — Pricing Patterns** | Scatter, box plot, price tier rating bar, sentiment-per-tier stacked bar |
-| **7 — What Drives High Ratings** | Pearson correlation heatmap + Gradient Boosting feature importance |
-| **8 — Root-Cause Analysis** | TF-IDF on negative reviews, keyword bar chart, word cloud |
-| **9 — Recommendations** | 7 auto-generated data-backed bullet recommendations |
-| **10 — Interactive Frontend** | Live-filtering explorer: category dropdown, min-reviews slider, top/bottom toggle |
+The project contains the following major stages:
 
----
-
-## Key Findings
-
-- **Positive Sentiment % is the strongest rating predictor** (feature importance = 0.57, correlation r = 0.82). Quality perception matters far more than price.
-- **Mid-range tier products achieve the highest average ratings.** Premium products attract more negative sentiment when quality doesn't justify price.
-- **Top categories:** Watches and Smartphone Accessories (avg rating > 4.3, positive sentiment > 70%).
-- **Underperforming categories:** Home & Kitchen and Clothing (avg rating < 3.0, negative sentiment > 40%).
-- **Top complaint keywords:** "poor quality", "damaged packaging", "not as described", "size issue", "refund delayed".
-- **Model accuracy:** MAE = 0.115, R² = 0.892 on held-out test set (20% split).
+1. **Data Loading**
+2. **Data Cleaning**
+3. **Category Extraction**
+4. **Product-Level Aggregation**
+5. **Product Performance Analysis**
+6. **Pricing Pattern Analysis**
+7. **Rating Association Analysis**
+8. **Negative Review Analysis**
+9. **Business Recommendations**
+10. **Interactive Streamlit Dashboard**
 
 ---
 
-## Charts Generated
+## 📄 Project Report
 
-| File | Description |
-|---|---|
-| `category_distribution.png` | Review count per category (horizontal bar) |
-| `aggregated_data_sample.png` | Top-10 products KPI table figure |
-| `top10_products_chart.png` | Top 10: avg rating + sentiment bars |
-| `bottom10_products_chart.png` | Bottom 10: avg rating + sentiment bars |
-| `price_vs_rating_scatter.png` | Price vs Rating scatter, coloured by category |
-| `price_by_category_boxplot.png` | Price distribution box plot per category |
-| `price_tier_rating_chart.png` | Avg rating per price tier bar chart |
-| `price_tier_sentiment_chart.png` | Sentiment % breakdown per price tier (stacked bar) |
-| `correlation_heatmap.png` | Pearson correlation heatmap |
-| `feature_importance_chart.png` | GBR feature importance bar chart |
-| `negative_keywords_bar.png` | Top 20 TF-IDF negative keyword bar chart |
-| `negative_keywords_wordcloud.png` | Word cloud of negative keywords |
-| `notebook_widget_demo.png` | Interactive explorer demo chart |
+A detailed project report is included in the repository:
 
----
+`Samistha_ProjectReport.docx`
 
-## Tech Stack
+The report covers:
 
-| Library | Version | Purpose |
-|---|---|---|
-| `streamlit` | 1.59.2 | Web app framework — interactive frontend |
-| `pandas` | 3.0.3 | Data ingestion, cleaning, aggregation |
-| `numpy` | 2.4.6 | Numerical computation |
-| `matplotlib` | 3.11.2 | Static chart generation |
-| `seaborn` | 0.13.2 | Statistical visualisations (heatmap, boxplot) |
-| `scikit-learn` | 1.9.1 | GBR model, TF-IDF, LabelEncoder, train/test split |
-| `wordcloud` | 1.9.6 | Negative keyword word cloud |
+* Business problem
+* Objectives
+* Dataset description
+* Data preprocessing
+* Exploratory analysis
+* Machine learning methodology
+* Sentiment analysis
+* Key findings
+* Recommendations
+* Limitations
+* Conclusion
 
 ---
 
-## Screenshots
+## ⚠️ Limitations
 
-| Chart | Preview path |
-|---|---|
-| Category Distribution | `charts/category_distribution.png` |
-| Top 10 Products | `charts/top10_products_chart.png` |
-| Feature Importance | `charts/feature_importance_chart.png` |
-| Word Cloud | `charts/negative_keywords_wordcloud.png` |
-| Interactive Explorer | `charts/notebook_widget_demo.png` |
+The analysis has several limitations:
 
----
-
-## Report
-
-The full project write-up is in **`Samistha_ProjectReport.docx`**, covering:
-- Business problem & objectives
-- Dataset description
-- Methodology (5-stage pipeline)
-- All analysis sections with embedded chart images
-- 7 data-backed recommendations
-- Conclusion & limitations
+* The dataset represents a specific collection of Flipkart reviews and may not represent all Flipkart products or customers.
+* Product categories are inferred using keyword-based rules.
+* Sentiment labels are based on the labels available in the dataset.
+* Correlation and machine-learning feature importance should not be interpreted as causal relationships.
+* The analysis is based on historical/static review data rather than continuously updated marketplace data.
+* Business recommendations depend on the quality and coverage of the underlying dataset.
 
 ---
 
-*AICTE IBM SkillsBuild Internship — Flipkart Product Performance & Pricing Analysis*
+## 🎓 Internship Project
+
+**AICTE–IBM SkillsBuild Internship**
+
+### Project Title
+
+**Flipkart Product Performance & Pricing Analysis**
+
+### Developed With
+
+**IBM Bob | Python | Data Analysis | Machine Learning | NLP | Streamlit**
+
+This project was developed with the assistance of **IBM Bob**, an AI-powered development tool, for implementing and refining the data analysis, machine learning, visualization, and Streamlit components.
+
+---
+
+## 👩‍💻 Author
+
+**Samistha Kesarwani**
+
+B.Tech Student
+
+---
+
+⭐ If you find this project useful, feel free to explore the repository and review the methodology and implementation.
